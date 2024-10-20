@@ -1,9 +1,9 @@
 /*
-	bfs
-	This problem requires you to implement a basic BFS algorithm
+    bfs
+    This problem requires you to implement a basic BFS algorithm
 */
 
-//I AM NOT DONE
+ 
 use std::collections::VecDeque;
 
 // Define a graph
@@ -27,14 +27,29 @@ impl Graph {
 
     // Perform a breadth-first search on the graph, return the order of visited nodes
     fn bfs_with_return(&self, start: usize) -> Vec<usize> {
+        let mut visit_order = vec![]; // 记录访问顺序
+        let mut visited = vec![false; self.adj.len()]; // 访问标记
+        let mut queue = VecDeque::new(); // 队列用于 BFS
         
-		//TODO
+        // 将起始节点加入队列并标记为已访问
+        queue.push_back(start);
+        visited[start] = true;
 
-        let mut visit_order = vec![];
+        while let Some(node) = queue.pop_front() {
+            visit_order.push(node); // 记录访问的节点
+            
+            // 遍历当前节点的邻接节点
+            for &neighbor in &self.adj[node] {
+                if !visited[neighbor] {
+                    visited[neighbor] = true; // 标记为已访问
+                    queue.push_back(neighbor); // 将邻接节点加入队列
+                }
+            }
+        }
+        
         visit_order
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -84,4 +99,3 @@ mod tests {
         assert_eq!(visited_order, vec![0]);
     }
 }
-
