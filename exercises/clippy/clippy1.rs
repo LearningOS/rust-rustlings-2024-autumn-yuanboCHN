@@ -11,12 +11,15 @@
 
  
 
-use std::f32::consts::PI;
+use std::f32;
 
 fn main() {
-    let radius: f32 = 5.0;  // 显式指定为 f32 类型
+    let pi:f32 = f32::consts::PI;
+    let radius: f32 = 5.00f32;
 
-    let area = PI * radius.powi(2);  // 现在 powi 可以正确工作
+   
+
+    let area :f32 = pi * f32::powi( radius, 2);  // 现在 powi 可以正确工作
 
     println!(
         "The area of a circle with radius {:.2} is {:.5}!",
